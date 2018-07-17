@@ -1,0 +1,35 @@
+<img src="http://localhost:33333">
+
+
+<div>
+	<div><span>First</span></div>
+	<div><span><i>Second</i></span></div>
+</div>
+
+<div>Normal</div>
+<div><i>Italics</i></div>
+
+Hi, I think I have another repro for this behaviour, the following HTML will lose the styling when pasted into PM
+
+```
+<div>
+	<div>Normal</div>
+	<div><i>Italics</i></div>
+</div>
+```
+The generated slice becomes:
+```
+"content": [
+    {
+        "type": "paragraph",
+        "content": [{ "type": "text", "text": "Normal" }]
+    },
+    {
+        "type": "paragraph",
+        "content": [{ "type": "text", "text": "Italics" }],
+        "marks": [{ "type": "italic" }]
+    }
+],
+"openStart": 1,
+"openEnd": 1
+```
